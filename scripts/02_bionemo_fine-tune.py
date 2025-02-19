@@ -127,7 +127,7 @@ def train_model(
         accelerator="gpu",
         devices=1,
         strategy=strategy,
-        limit_val_batches=2,
+        limit_val_batches=8,
         val_check_interval=n_steps_train // 4,
         max_steps=n_steps_train,
         num_nodes=1,
@@ -183,6 +183,7 @@ if __name__ == "__main__":
 
     config = ESM2FineTuneSeqConfig(initial_ckpt_path=str(pretrain_ckpt_path))
 
+    # Start training
     checkpoint, metrics, trainer = train_model(
         experiment_name=experiment_name,
         experiment_dir=Path(experiment_results_dir),  # new checkpoint will land in a subdir of this
@@ -190,4 +191,5 @@ if __name__ == "__main__":
         data_module=data_module,
         n_steps_train=n_steps_train,
     )
+    print(metrics)
     print(f"Experiment completed with checkpoint stored at {checkpoint}")
