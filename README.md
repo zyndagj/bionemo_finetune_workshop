@@ -33,9 +33,15 @@ make run
 ### Enroot
 
 ```
-enroot import docker://nvcr.io#nvidia/clara/bionemo-framework:2.3
-enroot 
-enroot start blah
+enroot import --output bionemo.sqsh docker://nvcr.io#nvidia/clara/bionemo-framework:2.3
+enroot create --name bionemo bionemo.sqsh
+enroot start bionemo
+```
+
+Alternatively, you can run
+
+```
+make enroot
 ```
 
 ### Singularity/Apptainer
@@ -49,13 +55,11 @@ apptainer exec --nv
 
 ## 2. Starting Jupyter
 
-Once inside the container, start Jupyter Lab using
+Once inside the container, navigate to the directory containing this repo. In Docker, that may be `$HOME`, for enroot and apptainer, that will be the original path. After that, start Jupyter Lab using
 
 ```
-jupyter-lab 
+jupyter-lab --notebook-dir=.
 ```
-
-and then navigate to your HOME directory.
 
 ## Next-steps
 
