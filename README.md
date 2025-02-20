@@ -50,7 +50,13 @@ make enroot
 
 ```
 apptainer pull docker://nvcr.io/nvidia/clara/bionemo-framework:2.3
-apptainer exec --nv
+apptainer exec --nv <IMG> jupyter-lab --notebook-dir=$PWD
+```
+
+If you're on Bruno, you can also use my cached container at
+
+```
+make bruno
 ```
 
 ## 2. Starting Jupyter

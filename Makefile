@@ -25,6 +25,9 @@ enroot: | /tmp/$(USER) /tmp/$(USER)/bionemo_$(TAG).sqsh
 pull:
 	docker pull $(IMG)
 
+bruno:
+	apptainer exec --nv /hpc/mydata/greg.zynda/bionemo/bionemo-framework_2.3.sif jupyter-lab --notebook-dir=$(PWD)
+
 /tmp/$(USER)/scripts: | scripts
 	rsync -ra $| $(dir $@)
 
